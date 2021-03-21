@@ -1,10 +1,10 @@
 const router = require('express').Router();
 
 const { userController } = require('../controller');
-// const { middleware } = require('../middleware');
+const { userMiddleware } = require('../middleware');
 
 router.get('/', userController.getAllUsers);
-router.post('/', userController.createUser);
+router.post('/', userMiddleware.checkIsUserValid, userController.createUser);
 
 // router.use('/:id', middleware.checkIsPresent);
 router.get('/:id', userController.getUser);

@@ -12,7 +12,7 @@ module.exports = {
     },
     getUser: async (req, res, next) => {
         try {
-            const id = req.params;
+            const { id } = req.params;
 
             const user = await userService.findOne(id);
 
@@ -23,17 +23,17 @@ module.exports = {
     },
     createUser: async (req, res, next) => {
         try {
-            const { body } = req;
-            await userService.createOne(body);
+            console.log(req.body);
+            await userService.createOne(req.body);
 
-            res.json('User os created');
+            res.json('User is created');
         } catch (e) {
             next(e);
         }
     },
     deleteUser: async (req, res, next) => {
         try {
-            const id = req.params;
+            const { id } = req.params;
 
             await userService.deleteOne(id);
 
