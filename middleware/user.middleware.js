@@ -1,14 +1,18 @@
+const { userValidator } = require('../validator');
+
 module.exports = {
     checkIsUserValid: (req, res, next) => {
         try {
-            const { body } = req;
-            if (body.name.length < 4) {
-                throw new Error('NAME MUST BE NOT LESS THEN 4 ');
+            const { error } = userValidator.createUserValidator.validate(req.body);
+
+            if (error) {
+                throw new Error(error.details[0].message);
             }
 
             next();
         } catch (e) {
-            next();
+            next(e);
+            // res.status(404).json(e.message);
         }
     }
 };

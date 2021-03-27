@@ -1,3 +1,4 @@
+const { passwordHasher } = require('../helper');
 const { userService } = require('../service');
 
 module.exports = {
@@ -23,8 +24,10 @@ module.exports = {
     },
     createUser: async (req, res, next) => {
         try {
-            console.log(req.body);
-            await userService.createOne(req.body);
+            const { password } = req.body;
+            const hashPassword = await passwordHasher.hash(password);
+
+            await userService.createOne({ ...req.body, password: hashPassword });
 
             res.json('User is created');
         } catch (e) {
