@@ -36,13 +36,12 @@ module.exports = (client) => {
                 type: DataTypes.STRING
                 // allowNull: false
             },
-            docs: {
-                type: DataTypes.STRING
-                // allowNull: false
-            },
-            videos: {
+            doc: {
                 type: DataTypes.STRING
             }
+            // video: {
+            //     type: DataTypes.STRING
+            // }
         },
         {
             tableName: 'users',

@@ -11,7 +11,7 @@ module.exports = {
             throw new Error('USER NOT FOUND');
         }
 
-        const isEqual = await passwordHasher.compare(password, user.password); // ?????????
+        const isEqual = await passwordHasher.compare(password, user[0].dataValues.password); // ?????????
         return isEqual;
     }
 };

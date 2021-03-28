@@ -13,10 +13,12 @@ module.exports = Joi.object({
     // email: Joi.string().email().required(),
     password: Joi.string().regex(regexpEnum.PASSWORD_REGEXP).required(),
     avatar: Joi.string(),
-    docs: Joi.array().items(Joi.object({
-        doc: Joi.string()
-    })),
-    videos: Joi.array().items(Joi.object({
-        video: Joi.string()
-    }))
+    doc: Joi.string()
+    // video: Joi.string()
+    // docs: Joi.array().items(Joi.object({
+    //     doc: Joi.string()
+    // })),
+    // videos: Joi.array().items(Joi.object({
+    //     video: Joi.string()
+    // }))
 });
