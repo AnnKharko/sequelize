@@ -29,8 +29,19 @@ module.exports = (client) => {
                 type: DataTypes.STRING
                 // allowNull: false
             },
+            // role: {
+            //     type: DataTypes.STRING
+            // },
             role: {
-                type: DataTypes.STRING
+                type: DataTypes.ENUM,
+                values: [
+                    'user',
+                    'admin',
+                    'disabled'
+                ]
+            },
+            authId: {
+                type: DataTypes.INTEGER
             },
             avatar: {
                 type: DataTypes.STRING

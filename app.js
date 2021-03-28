@@ -1,13 +1,18 @@
 const express = require('express');
 const fileUpload = require('express-fileupload');
-const db = require('./dataBase').getInstance();
+const dotenv = require('dotenv');
+const path = require('path');
 const Sentry = require('./logger/sentry');
+
+const { apiRouter } = require('./router');
+const db = require('./dataBase').getInstance();
 
 db.setModels();
 
-const { apiRouter } = require('./router');
-
 const app = express();
+
+dotenv.config({ path: path.join(process.cwd(), '.env') });
+// { path: path.join(process.cwd(), './.env') }
 
 app.use(Sentry.Handlers.requestHandler());
 
