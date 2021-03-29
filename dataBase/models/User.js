@@ -10,7 +10,8 @@ module.exports = (client) => {
                 autoIncrement: true
             },
             name: {
-                type: DataTypes.STRING
+                type: DataTypes.STRING,
+                required: true
                 // allowNull: false
             },
             age: {
@@ -22,11 +23,14 @@ module.exports = (client) => {
                 // allowNull: false
             },
             email: {
-                type: DataTypes.STRING
+                type: DataTypes.STRING,
+                required: true
                 // allowNull: false
             },
             password: {
-                type: DataTypes.STRING
+                type: DataTypes.STRING,
+                required: true
+
                 // allowNull: false
             },
             // role: {

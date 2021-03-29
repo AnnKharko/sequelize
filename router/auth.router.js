@@ -1,10 +1,11 @@
 const router = require('express').Router();
 
 const { authController } = require('../controller');
-// const { middleware } = require('../middlewares');
+const { authMiddleware } = require('../middleware');
 //
 // router.get('/', controller.getAllUsers);
 router.post('/', authController.authUser);
+router.post('/refresh', authMiddleware.checkRefreshToken, authController.refreshToken);
 //
 // router.use('/:id', middleware.checkIsPresent);
 // router.get('/:id', controller.getUser);

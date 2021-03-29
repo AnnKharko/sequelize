@@ -5,6 +5,7 @@ const path = require('path');
 const Sentry = require('./logger/sentry');
 
 const { apiRouter } = require('./router');
+const { PORT } = require('./constant/constant');
 const db = require('./dataBase').getInstance();
 
 db.setModels();
@@ -35,6 +36,6 @@ app.use('*', (err, req, res, next) => {
         });
 });
 
-app.listen(5001, () => {
-    console.log('App listen 5001');
+app.listen(PORT, () => {
+    console.log(`App listen ${PORT}`);
 });

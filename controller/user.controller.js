@@ -1,3 +1,5 @@
+const { constant } = require('../constant');
+const { statusCodes } = require('../error');
 const { passwordHasher } = require('../helper');
 const { userService } = require('../service');
 
@@ -29,7 +31,7 @@ module.exports = {
 
             await userService.createOne({ ...req.body, password: hashPassword });
 
-            res.json('User is created');
+            res.status(statusCodes.CREATED).json(constant.USER_IS_CREATED);
         } catch (e) {
             next(e);
         }
@@ -40,7 +42,7 @@ module.exports = {
 
             await userService.deleteOne(id);
 
-            res.json('USER IS DELETED');
+            res.status(statusCodes.OK).json(constant.USER_IS_DELETED);
         } catch (e) {
             next(e);
         }
