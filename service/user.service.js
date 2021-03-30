@@ -11,10 +11,10 @@ module.exports = {
 
         return User.findAll({ where: { id: userId } });
     },
-    createOne: (userObject) => {
+    createOne: (userObject, transaction) => {
         const User = db.getModel('User');
 
-        return User.create(userObject);
+        return User.create(userObject, { transaction });
     },
     deleteOne: (id) => {
         const User = db.getModel('User');

@@ -1,6 +1,7 @@
 const { constant } = require('../constant');
-const { statusCodes } = require('../error');
 const { passwordHasher } = require('../helper');
+const { statusCodes } = require('../error');
+const { transactionInstance } = require('../dataBase').getInstance();
 const { userService } = require('../service');
 
 module.exports = {
@@ -25,14 +26,17 @@ module.exports = {
         }
     },
     createUser: async (req, res, next) => {
+        const transaction = await transactionInstance();
         try {
             const { password } = req.body;
             const hashPassword = await passwordHasher.hash(password);
 
-            await userService.createOne({ ...req.body, password: hashPassword });
+            await userService.createOne({ ...req.body, password: hashPassword }, transaction);
 
+            await transaction.commit();
             res.status(statusCodes.CREATED).json(constant.USER_IS_CREATED);
         } catch (e) {
+            await transaction.rollback();
             next(e);
         }
     },
