@@ -7,7 +7,7 @@ const { userService } = require('../service');
 module.exports = {
     getAllUsers: async (req, res, next) => {
         try {
-            const users = await userService.findAll();
+            const users = await userService.findAll(req.query);
 
             res.json(users);
         } catch (e) {
